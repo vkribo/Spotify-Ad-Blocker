@@ -100,6 +100,12 @@ namespace EZBlocker
                 }
                 else
                 {
+                    if(Properties.Settings.Default.StopEZBlocker)
+                    {
+                        Properties.Settings.Default.UserEducated = true;
+                        this.Close();
+                    }
+
                     if (MainTimer.Interval != 1000) MainTimer.Interval = 1000;
                     string message = Properties.strings.StatusNotFound;
                     if (lastMessage != message)
@@ -192,14 +198,13 @@ namespace EZBlocker
             }
 
             string spotifyPath = GetSpotifyPath();
-            if (spotifyPath != "")
-            {
-                Properties.Settings.Default.SpotifyPath = spotifyPath;
-                Properties.Settings.Default.Save();
-            } else
+            if(spotifyPath == "")
             {
                 spotifyPath = Environment.GetEnvironmentVariable("APPDATA") + @"\Spotify\spotify.exe";
             }
+
+            Properties.Settings.Default.SpotifyPath = spotifyPath;
+            Properties.Settings.Default.Save();
 
             // Start Spotify and give EZBlocker higher priority
             try
@@ -231,8 +236,11 @@ namespace EZBlocker
                     startupKey.DeleteValue("EZBlocker");
                 }
             }
+
             SpotifyCheckbox.Checked = Properties.Settings.Default.StartSpotify;
-            
+            StopEZBlockerCheckBox.Checked = Properties.Settings.Default.StopEZBlocker;
+            StopEZBlockerCheckBox.Enabled = SpotifyCheckbox.Checked;
+
             // Set up Analytics
             if (String.IsNullOrEmpty(Properties.Settings.Default.CID))
             {
@@ -363,7 +371,18 @@ namespace EZBlocker
             if (!MainTimer.Enabled) return; // Still setting up UI
             Properties.Settings.Default.StartSpotify = SpotifyCheckbox.Checked;
             Properties.Settings.Default.Save();
+
+            StopEZBlockerCheckBox.Enabled = SpotifyCheckbox.Checked;
+            StopEZBlockerCheckBox.Checked = (StopEZBlockerCheckBox.Enabled) ? StopEZBlockerCheckBox.Checked : false;
+
             LogAction("/settings/startSpotify/" + SpotifyCheckbox.Checked.ToString());
+        }
+
+        private void StopEZBlockerCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!MainTimer.Enabled) return;
+            Properties.Settings.Default.StopEZBlocker = StopEZBlockerCheckBox.Checked;
+            Properties.Settings.Default.Save();
         }
 
         private void VolumeMixerButton_Click(object sender, EventArgs e)

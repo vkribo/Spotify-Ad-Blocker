@@ -19,7 +19,7 @@ namespace EZBlocker.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class strings {
@@ -212,6 +212,15 @@ namespace EZBlocker.Properties {
         internal static string StatusPlaying {
             get {
                 return ResourceManager.GetString("StatusPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop EZBlocker with Spotify.
+        /// </summary>
+        internal static string StopCheckBoxText {
+            get {
+                return ResourceManager.GetString("StopCheckBoxText", resourceCulture);
             }
         }
         

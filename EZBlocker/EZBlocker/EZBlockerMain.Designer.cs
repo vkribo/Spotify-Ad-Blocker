@@ -45,6 +45,7 @@
             this.BlockBannersCheckbox = new System.Windows.Forms.CheckBox();
             this.StartupCheckbox = new System.Windows.Forms.CheckBox();
             this.SpotifyCheckbox = new System.Windows.Forms.CheckBox();
+            this.StopEZBlockerCheckBox = new System.Windows.Forms.CheckBox();
             this.NotifyIconContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,10 +156,19 @@
             this.SpotifyCheckbox.UseVisualStyleBackColor = true;
             this.SpotifyCheckbox.CheckedChanged += new System.EventHandler(this.SpotifyCheckbox_CheckedChanged);
             // 
+            // StopEZBlockerCheckBox
+            // 
+            resources.ApplyResources(this.StopEZBlockerCheckBox, "StopEZBlockerCheckBox");
+            this.StopEZBlockerCheckBox.Name = "StopEZBlockerCheckBox";
+            this.StopEZBlockerCheckBox.Text = global::EZBlocker.Properties.strings.StopCheckBoxText;
+            this.StopEZBlockerCheckBox.UseVisualStyleBackColor = true;
+            this.StopEZBlockerCheckBox.CheckedChanged += new System.EventHandler(this.StopEZBlockerCheckBox_CheckedChanged);
+            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.StopEZBlockerCheckBox);
             this.Controls.Add(this.SpotifyCheckbox);
             this.Controls.Add(this.StartupCheckbox);
             this.Controls.Add(this.BlockBannersCheckbox);
@@ -193,6 +203,7 @@
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.CheckBox SpotifyCheckbox;
         private System.Windows.Forms.ToolStripMenuItem undoPatchToolStripMenuItem;
+        private System.Windows.Forms.CheckBox StopEZBlockerCheckBox;
     }
 }
 
